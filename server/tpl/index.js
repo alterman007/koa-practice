@@ -1,5 +1,5 @@
-const normalTpl = require('./normal.js');
-
 module.exports = {
-  normal: normalTpl,
+  normalTpl:  require('./html'),
+  ejsTpl: require('./ejs'),
+  pugTpl: require('./pug'),
 };
