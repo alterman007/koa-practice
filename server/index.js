@@ -1,17 +1,19 @@
 const Koa = require('koa');
-const ejs = require('ejs');
-const pug = require('pug');
-const { htmlTpl, ejsTpl, pugTpl } = require('./tpl')
+const views = require('koa-views');
+const { resolve } = require('path');
 
 const app = new Koa();
 
+app.use(views(resolve(__dirname, './views'),{
+  extension: 'pug',
+}));
+
 app.use(async (ctx, next) => {
-  ctx.type = 'text/html; charset=utf-8';
-  ctx.body = pug.render(pugTpl, {
+  await ctx.render('index', {
     you: 'world',
     me: 'alterman',
-    content: 'this is test static html page',
-  });
+    content: '测试pug模板引擎中间件',
+  })
 });
 
 app.listen(3333);
