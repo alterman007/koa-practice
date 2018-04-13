@@ -16,7 +16,7 @@ const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));
   await sleep(3000);
 
   await page.waitForSelector('.more');
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 1; i++) {
     await sleep(3000);
     await page.click('.more');
   }
@@ -38,5 +38,6 @@ const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));
     return links;
   });
   browser.close();
-  console.log(result.length)
+  // console.log(result.length)
+  process.send({ result });
 })()
